@@ -17,3 +17,23 @@
     -fx-background-color:#fff;
     -fx-text-fill: #009B77;
 }
+
+#gameselection {
+    -fx-background-color: #000;
+    -fx-border-color: #000;
+    -fx-border-width: 0.3em;
+    -fx-border-insets: 1em;
+    -fx-background-insets: 1em;
+}
+#gameselection:hover {
+    -fx-background-color: #009B77;
+    -fx-border-color: #009B77;
+}
+#gameselectionlabel {
+    -fx-text-fill: #fff;
+    -fx-font-size: 3em;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-border-color: #fff;
+    -fx-border-width: 0 0 0.1em 0;
+}
