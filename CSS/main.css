@@ -1,0 +1,19 @@
+.root {
+    -fx-background-color: #000;
+    -fx-background-image: url("../Resources/Images/Backgrounds/Home.gif");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+}
+
+#mainbutton {
+    -fx-background-color:#009B77;
+    -fx-text-fill: #fff;
+    -fx-padding: 2em 12em;
+    -fx-font-size: 3em;
+    -fx-font-weight: bold;
+}
+#mainbutton:hover {
+    -fx-background-color:#fff;
+    -fx-text-fill: #009B77;
+}
