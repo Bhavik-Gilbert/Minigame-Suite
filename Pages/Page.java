@@ -1,6 +1,6 @@
+package Pages;
 import javafx.util.Duration;
-import java.util.*;
-import javafx.stage.Stage;
+import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.*;
 
@@ -30,40 +30,45 @@ public abstract class Page {
     }
 
     protected void transitionOut(Pane window) {
-        int time = 300;
+        AnimationTimer tm = new TimerMethod();
+        tm.start();
 
-        FadeTransition transition = new FadeTransition(Duration.millis(time), window);
+        FadeTransition transition = new FadeTransition(Duration.millis(300), window);
         transition.setFromValue(1.0);
         transition.setToValue(0.0);
         transition.play();
-
-        /** 
-        try {
-            wait(time);
-        } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        */
     }
 
     /**
      * Plays transition in.
      */
     protected void transitionIn(Pane window) {
-        int time = 300;
+        AnimationTimer tm = new TimerMethod();
+        tm.start();
+        
         FadeTransition transition = new FadeTransition(Duration.millis(300), window);
         transition.setFromValue(0.0);
         transition.setToValue(1.0);
         transition.play();
 
-        /**
-        try {
-            wait(time);
-        } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        
+    }
+}
+
+class TimerMethod extends AnimationTimer {
+    private double op = 1;
+    // define the handle method
+    @Override
+    public void handle(long now) {
+        // call the method
+        handlee();
+    }
+
+    // method handlee
+    private void handlee() {
+        op -= 0.01;
+        if (op <= 0) {
+            stop();
         }
-        */
     }
 }

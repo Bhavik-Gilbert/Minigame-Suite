@@ -1,3 +1,5 @@
+package Pages.MiniGames;
+
 import javafx.scene.layout.Pane;
 
 public class Blackjack extends Games {
@@ -8,5 +10,8 @@ public class Blackjack extends Games {
     public void draw() {
         this.clear();
         transitionIn(page);
+
+        drawGrid();
+        page.getChildren().add(this.grid);
     }
 }

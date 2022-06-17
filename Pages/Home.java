@@ -1,3 +1,4 @@
+package Pages;
 import javafx.beans.binding.DoubleExpression;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

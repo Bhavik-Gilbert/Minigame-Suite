@@ -1,3 +1,5 @@
+
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -12,15 +14,14 @@ import javafx.stage.Screen;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import Pages.Home;
+import Pages.Page;
+
 public class Main extends Application{
 	private Scene scene;
-	private BorderPane root;
-	private Pane page;
-	private MenuBar menu;
+	private Stage stage;
 
-	private Page currentPage;
-	private double height;
-	private double width;
+	private boolean fullScreen;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -28,38 +29,46 @@ public class Main extends Application{
 	@Override 
 	public void start(Stage stage) throws Exception {
 		Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-		this.height = screenBounds.getHeight()/1.2;
-		this.width = screenBounds.getWidth()/1.2;
+		double height = screenBounds.getHeight();
+		double width = screenBounds.getWidth();
+		this.fullScreen = false;
 
-		this.root = new BorderPane();
-	
-		this.page = new Pane();
-		this.menu = new MenuBar();
+		this.stage = stage;
+		BorderPane root = new BorderPane();
+		Pane page = new Pane();
+		MenuBar menu = new MenuBar();
 		
-		root.setTop(createStartMenu(this.menu));
-		root.setCenter(createStartPage(this.page));
+		root.setTop(drawStartMenu(menu));
+		root.setCenter(drawStartPage(page, height, width));
 
-		this.scene = new Scene(this.root);
-		this.scene.getStylesheets().add("CSS/main.css");
+		this.scene = new Scene(root, width/1.2, height/1.2);
+		this.scene.getStylesheets().add("resources/CSS/main.css");
 
-		stage.setTitle("Game Suite");
-		stage.setMinHeight(this.height);
-		stage.setMinWidth(this.width);
-		stage.setMaxHeight(this.height);
-		stage.setMaxWidth(this.width);
-		stage.setScene(this.scene);
-		stage.show();
+		this.stage.setTitle("Game Suite");
+		this.stage.setMinHeight(height/4);
+		this.stage.setMinWidth(width/4);
+		this.stage.setScene(this.scene);
+		this.stage.show();
  	}   
 
-	
+	private MenuBar drawStartMenu(MenuBar menu) {
+		Menu controls = new Menu("File");
+		MenuItem fullScreen = new MenuItem("Full Screen");
+		fullScreen.setOnAction((e)->{
+			this.stage.setFullScreen(!this.fullScreen);
+			this.fullScreen = !this.fullScreen;
+		});
 
-	private MenuBar createStartMenu(MenuBar menu) {
+		controls.getItems().addAll(fullScreen);
+
+		menu.getMenus().addAll(controls);
+
 		return menu;
 	}
 
-	private Pane createStartPage(Pane page) {
-		this.currentPage = new Home(this.page, this.height, this.width);
-		this.currentPage.draw();
+	private Pane drawStartPage(Pane page, double height, double width) {
+		Page currentPage = new Home(page, height, width);
+		currentPage.draw();
 
 		return page;
 	}

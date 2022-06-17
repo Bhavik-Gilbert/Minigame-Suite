@@ -1,9 +1,21 @@
 .root {
     -fx-background-color: #000;
-    -fx-background-image: url("../Resources/Images/Backgrounds/Home.gif");
+    -fx-background-image: url("../Images/Backgrounds/Home.gif");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%;
     -fx-background-position: center center;
+}
+
+.button {
+    -fx-background-color:#009B77;
+    -fx-text-fill: #fff;
+    -fx-padding: 1em 3em;
+    -fx-font-size: 2em;
+    -fx-border-radius: 5em;
+}
+.button:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: #009B77;
 }
 
 #mainbutton {
@@ -14,7 +26,7 @@
     -fx-font-weight: bold;
 }
 #mainbutton:hover {
-    -fx-background-color:#fff;
+    -fx-background-color: #fff;
     -fx-text-fill: #009B77;
 }
 
@@ -31,9 +43,15 @@
 }
 #gameselectionlabel {
     -fx-text-fill: #fff;
-    -fx-font-size: 3em;
+    -fx-font-size: 2em;
     -fx-font-weight: bold;
     -fx-font-style: italic;
     -fx-border-color: #fff;
     -fx-border-width: 0 0 0.1em 0;
+}
+
+#timer {
+    -fx-font-size: 3em;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
 }
