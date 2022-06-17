@@ -21,7 +21,7 @@ public class ImageReader
      * @param width Width to set to image object.
      * @return imageView An object containing the image data.
      */
-    public static ImageView readImage(String filepath, int height, int width) {
+    public static ImageView readImage(String filepath, Double height, Double width) {
         ImageView imageView = readImage(filepath);
 
         if (imageView == null) {

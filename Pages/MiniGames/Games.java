@@ -23,11 +23,15 @@ public abstract class Games extends Page {
         super(page, height, width);
     }
 
-    protected void drawGrid() {
-        this.grid = new GridPane();
-        this.grid.setHgap(this.width/10);
-        this.grid.setVgap(this.height/10);
-        this.grid.setPadding(new Insets(this.height/50, this.width/50, this.height / 50, this.width/50));
+    protected GridPane drawGrid() {
+        grid = new GridPane();
+        grid.setHgap(this.width/10);
+        grid.setVgap(this.height/50);
+        grid.setPadding(new Insets(this.height/50, this.width/50, this.height/50, this.width/50));
+
+        HBox row = new HBox();
+        row.setSpacing(this.width/10);
+        row.setPadding(new Insets(this.height/50, this.width/50, this.height/50, this.width/50));
 
         Button quit = new Button("Quit");
         quit.setOnAction(e -> {
@@ -39,7 +43,11 @@ public abstract class Games extends Page {
         Label time = new Label("0:00");
         time.setId("timer");
         timer(time);
-        this.grid.addRow(0, time, quit);
+
+        row.getChildren().addAll(time, quit);
+        grid.addRow(0, row);
+
+        return grid;
     }
 
     private void timer(Label label) {

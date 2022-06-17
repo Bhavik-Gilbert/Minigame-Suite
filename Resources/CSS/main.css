@@ -6,16 +6,60 @@
     -fx-background-position: center center;
 }
 
+/* menu */
+.menu-bar {
+    -fx-background-color: #e6d6aa;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 0.1em;
+    -fx-border-color: #fff;
+}
+
+.menu-bar .label {
+    -fx-font-size: 1.1em;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: #000;
+    -fx-padding: 0.2em;
+    -fx-background-radius: 0em;
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused,
+.menu-bar .menu-button:showing,
+.menu-bar .label:hover {
+    -fx-background-color: #ede0bb;
+    -fx-background-radius: 0.1em;
+    -fx-cursor: hand;
+}
+
+.menu-item {
+    -fx-background-color: #e6d6aa;
+}
+
+.menu-item:hover {
+    -fx-cursor: hand;
+}
+
+.menu-item .label {
+    -fx-font-size: 10.0 pt;
+    -fx-text-fill: #000;
+}
+
+.menu-item:hover {
+    -fx-background-color: #ede0bb;
+}
+
+/* button */
 .button {
     -fx-background-color:#009B77;
     -fx-text-fill: #fff;
     -fx-padding: 1em 3em;
     -fx-font-size: 2em;
-    -fx-border-radius: 5em;
+    -fx-background-radius: 2em;
 }
 .button:hover {
     -fx-background-color: #fff;
     -fx-text-fill: #009B77;
+    -fx-cursor: hand;
 }
 
 #mainbutton {
@@ -23,11 +67,13 @@
     -fx-text-fill: #fff;
     -fx-padding: 2em 12em;
     -fx-font-size: 3em;
+    -fx-background-radius: 5em;
     -fx-font-weight: bold;
 }
 #mainbutton:hover {
     -fx-background-color: #fff;
     -fx-text-fill: #009B77;
+    -fx-cursor: hand;
 }
 
 #gameselection {
@@ -40,6 +86,7 @@
 #gameselection:hover {
     -fx-background-color: #009B77;
     -fx-border-color: #009B77;
+    -fx-cursor: hand;
 }
 #gameselectionlabel {
     -fx-text-fill: #fff;

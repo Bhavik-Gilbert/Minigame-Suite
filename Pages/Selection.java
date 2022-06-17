@@ -6,8 +6,8 @@ import java.util.*;
 import java.util.concurrent.Flow;
 
 import Pages.MiniGames.Blackjack;
-import Pages.MiniGames.Checkers;
 import Pages.MiniGames.Games;
+import Pages.MiniGames.Checkers;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -52,7 +52,7 @@ public class Selection extends Page {
 
             Label logo = new Label();
             String separator = System.getProperty("file.separator");
-            ImageView image = ImageReader.readImage("Resources" + separator + "Images" + separator + "Logos" + separator + k  + ".png", (int)this.height/7, (int)this.width/7);
+            ImageView image = ImageReader.readImage("Resources" + separator + "Images" + separator + "Logos" + separator + k  + ".png", this.height/7, this.width/7);
             if(image != null) {
                 logo.setGraphic(image);
             }
