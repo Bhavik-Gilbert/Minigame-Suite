@@ -7,7 +7,7 @@ import java.util.concurrent.Flow;
 
 import Pages.MiniGames.Blackjack;
 import Pages.MiniGames.Games;
-import Pages.MiniGames.Checkers;
+import Pages.MiniGames.Checkers_R.Checkers;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

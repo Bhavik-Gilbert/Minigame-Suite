@@ -1,21 +1,13 @@
-
+import Pages.Home;
+import Pages.Page;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
-import Pages.Home;
-import Pages.Page;
 
 public class Main extends Application{
 	private Scene scene;

@@ -6,14 +6,14 @@ import javax.crypto.spec.RC2ParameterSpec;
 
 import Pages.Page;
 import Pages.Selection;
-
+import Tools.ImageReader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.concurrent.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 

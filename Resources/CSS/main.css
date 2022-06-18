@@ -102,3 +102,40 @@
     -fx-text-fill: #000;
     -fx-font-weight: bold;
 }
+
+#informationbox {
+    -fx-background-color: #009B77;
+    -fx-border-color: #fff;
+    -fx-border-width: 0.3em;
+    -fx-padding: 1em;
+    -fx-border-radius: 2em;
+    -fx-background-radius: 2.5em;
+}
+#informationbox #timer {
+    -fx-text-fill: #ede0bb;
+}
+#information {
+    -fx-font-size: 1.5em;
+    -fx-text-fill: #fff;
+    -fx-font-style: italic;
+}
+
+#checkersBoard {
+    -fx-padding: 1.7em 0 0 1.5em;
+}
+
+#piece, #selectorPiece, #zone, #selectorZone, #killPiece {
+    -fx-padding: 1em;
+}
+#selectorPiece {
+    -fx-background-color: #e6d6aa;
+    -fx-background-radius: 10em;
+}
+#killPiece {
+    -fx-background-color: red;
+    -fx-opacity: 0.2;
+}
+#selectorZone {
+    -fx-background-color: #fff;
+    -fx-opacity: 0.2;
+}
