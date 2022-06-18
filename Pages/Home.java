@@ -1,9 +1,9 @@
 package Pages;
-import javafx.beans.binding.DoubleExpression;
-import javafx.geometry.Pos;
+import Tools.Constants;
+import Tools.SoundPlayer;
+
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 public class Home extends Page {
     public Home(Pane page, Double height, Double width) {
@@ -11,6 +11,7 @@ public class Home extends Page {
     }
 
     public void draw() {
+        this.playTheme(Constants.getHomeSoundPath(), true);
         this.clear();
         transitionIn(page);
 

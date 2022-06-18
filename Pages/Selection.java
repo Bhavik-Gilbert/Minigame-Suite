@@ -1,6 +1,8 @@
 package Pages;
 
+import Tools.Constants;
 import Tools.ImageReader;
+import Tools.SoundPlayer;
 
 import java.util.*;
 import java.util.concurrent.Flow;
@@ -22,6 +24,7 @@ public class Selection extends Page {
     }
 
     public void draw() {
+            this.playTheme(Constants.getHomeSoundPath(), true);
             this.clear();
             transitionIn(page);
 
@@ -51,8 +54,7 @@ public class Selection extends Page {
             game.setId("gameselection");
 
             Label logo = new Label();
-            String separator = System.getProperty("file.separator");
-            ImageView image = ImageReader.readImage("Resources" + separator + "Images" + separator + "Logos" + separator + k  + ".png", this.height/7, this.width/7);
+            ImageView image = ImageReader.readImage("Resources" + Constants.getSeparator() + "Images" + Constants.getSeparator() + "Logos" + Constants.getSeparator() + k  + ".png", this.height/7, this.width/7);
             if(image != null) {
                 logo.setGraphic(image);
             }
@@ -64,6 +66,7 @@ public class Selection extends Page {
 
             game.setOnMouseClicked((e)->{
                 transitionOut(page);
+                SoundPlayer.stopMusic();
                 v.draw();
             });
 

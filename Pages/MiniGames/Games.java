@@ -86,4 +86,10 @@ public abstract class Games extends Page {
         time.getKeyFrames().add(frame);
         time.playFromStart();
     }
+
+    protected void gameFinish() {
+        Page game = new Selection(this.page, this.height, this.width);
+        transitionOut(this.page);
+        game.draw();
+    }
 }

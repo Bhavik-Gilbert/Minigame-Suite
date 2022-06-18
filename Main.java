@@ -1,6 +1,6 @@
 import Pages.Home;
 import Pages.Page;
-
+import Tools.SoundPlayer;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -49,9 +49,25 @@ public class Main extends Application{
 		fullScreen.setOnAction((e)->{
 			this.stage.setFullScreen(!this.fullScreen);
 			this.fullScreen = !this.fullScreen;
+
+			if(fullScreen.getText().equals("Full Screen")) {
+				fullScreen.setText("Exit Full Screen");
+			} else {
+				fullScreen.setText("Full Screen");
+			}
+		});
+		MenuItem toggleMute = new MenuItem("Mute");
+		toggleMute.setOnAction((e) -> {
+			SoundPlayer.toggleMute();
+			if(SoundPlayer.getMute()) {
+				SoundPlayer.stopMusic();
+				toggleMute.setText("Unmute");
+			} else {
+				toggleMute.setText("Mute");
+			}
 		});
 
-		controls.getItems().addAll(fullScreen);
+		controls.getItems().addAll(fullScreen, toggleMute);
 
 		menu.getMenus().addAll(controls);
 

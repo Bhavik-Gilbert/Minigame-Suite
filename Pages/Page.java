@@ -1,5 +1,7 @@
 package Pages;
 import javafx.util.Duration;
+import Tools.Constants;
+import Tools.SoundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
 import javafx.scene.layout.*;
@@ -37,6 +39,12 @@ public abstract class Page {
         transition.setFromValue(1.0);
         transition.setToValue(0.0);
         transition.play();
+    }
+
+    protected void playTheme(String filePath, boolean loop) {
+        if (!SoundPlayer.getMute()) {
+            SoundPlayer.playMusic(filePath, loop);
+        }
     }
 
     /**

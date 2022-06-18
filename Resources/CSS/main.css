@@ -132,8 +132,8 @@
     -fx-background-radius: 10em;
 }
 #killPiece {
-    -fx-background-color: red;
-    -fx-opacity: 0.2;
+    -fx-background-color: #000;
+    -fx-opacity: 0.6;
 }
 #selectorZone {
     -fx-background-color: #fff;
