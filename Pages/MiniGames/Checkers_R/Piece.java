@@ -1,6 +1,7 @@
 package Pages.MiniGames.Checkers_R;
 
-import Tools.Constants;
+import java.io.File;
+
 import Tools.ImageReader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -64,13 +65,13 @@ public class Piece {
             getBlankPiece(height, width);
         }
 
-        String path = "Resources" + Constants.getSeparator() + "Games" + Constants.getSeparator() + "Checkers" + Constants.getSeparator() + this.colour.name()  + "_" + this.type.name() + ".png";
+        String path = "Resources" + File.separator + "Games" + File.separator + "Checkers" + File.separator + this.colour.name()  + "_" + this.type.name() + ".png";
 
         return getImage(path, height, width);
     }
 
     public static Label getBlankPiece(double height, double width) {
-        String path = "Resources" + Constants.getSeparator() + "Games" + Constants.getSeparator() + "Blank.png";
+        String path = "Resources" + File.separator + "Games" + File.separator + "Blank.png";
 
         return getImage(path, height, width);
     }

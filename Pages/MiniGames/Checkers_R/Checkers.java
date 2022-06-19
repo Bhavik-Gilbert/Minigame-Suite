@@ -3,13 +3,13 @@ package Pages.MiniGames.Checkers_R;
 import Pages.MiniGames.Games;
 import Pages.MiniGames.Checkers_R.Piece.COLOUR;
 import Pages.MiniGames.Checkers_R.Piece.TYPE;
-import Tools.ImageReader;
-import Tools.SoundPlayer;
-import Tools.AlertBox;
-import Tools.Constants;
 
+import java.io.File;
 import java.util.*;
 
+import Tools.AlertBox;
+import Tools.ImageReader;
+import Tools.SoundPlayer;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -55,7 +55,7 @@ public class Checkers extends Games {
         ImageView image = null;
         Label boardImage = new Label();
         while(image==null) {
-            image = ImageReader.readImage("Resources" + Constants.getSeparator() + "Games" + Constants.getSeparator() + "Checkers" + Constants.getSeparator()  + "board.png", this.width/2.5, this.width/2.5);
+            image = ImageReader.readImage("Resources" + File.separator + "Games" + File.separator + "Checkers" + File.separator  + "board.png", this.width/2.5, this.width/2.5);
         }
         boardImage.setGraphic(image);
 
@@ -290,7 +290,7 @@ public class Checkers extends Games {
         if (pieceListIndex != spaceListIndex && pieceRowIndex != spaceRowIndex) {
             this.pieces.get(spaceListIndex).set(spaceRowIndex, this.selectedPiece);
             this.pieces.get(pieceListIndex).set(pieceRowIndex, null);
-            SoundPlayer.playMusic("Resources" +  Constants.getSeparator() + "Sounds" + Constants.getSeparator() + "piece_move.wav", false);
+            SoundPlayer.playSound("Resources" +  File.separator + "Sounds" + File.separator + "piece_move.wav");
         }
     }
 
@@ -298,12 +298,12 @@ public class Checkers extends Games {
         if (this.selectedPiece.getColour() == COLOUR.WHITE) {
             if (spaceListIndex == 0) {
                 this.selectedPiece.promote();
-                SoundPlayer.playMusic("Resources" +  Constants.getSeparator() + "Sounds" + Constants.getSeparator() + "powerup.wav", false);
+                SoundPlayer.playSound("Resources" +  File.separator + "Sounds" + File.separator + "powerup.wav");
             }
         } else {
             if (spaceListIndex == this.pieces.size() - 1) {
                 this.selectedPiece.promote();
-                SoundPlayer.playMusic("Resources" +  Constants.getSeparator() + "Sounds" + Constants.getSeparator() + "powerup.wav", false);
+                SoundPlayer.playSound("Resources" +  File.separator + "Sounds" + File.separator + "powerup.wav");
             }
         }
     }
@@ -394,7 +394,7 @@ public class Checkers extends Games {
         String header = "Game Over";
         String message = winner + " wins with a score of " + score[0] + " to " + score[1];
 
-        SoundPlayer.playMusic("Resources" +  Constants.getSeparator() + "Sounds" + Constants.getSeparator() + "game_end.wav", false);
+        SoundPlayer.playSound("Resources" +  File.separator + "Sounds" + File.separator + "game_end.wav");
 
         AlertBox.informationBox(title, header, message);
 

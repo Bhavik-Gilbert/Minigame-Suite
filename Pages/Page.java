@@ -1,9 +1,14 @@
 package Pages;
+
 import javafx.util.Duration;
-import Tools.Constants;
+
+import java.io.File;
+import java.util.*;
+
 import Tools.SoundPlayer;
 import javafx.animation.AnimationTimer;
 import javafx.animation.FadeTransition;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 
 public abstract class Page {
@@ -12,6 +17,39 @@ public abstract class Page {
 
     protected double height;
     protected double width;
+
+    private static MenuItem musicMenu;
+    public static enum PAGETYPE {MAIN, GAME}
+
+    private static int mainSoundIndex = 0;
+    private static ArrayList<String> mainSoundPaths = new ArrayList<String>(
+        Arrays.asList(
+            "Resources" + File.separator + "Sounds" + File.separator + "SkyarrowBridge.wav",
+            "Resources" + File.separator + "Sounds" + File.separator + "AccumulaTown.wav",
+            "Resources" + File.separator + "Sounds" + File.separator + "SonicTheme.wav",
+            "Resources" + File.separator + "Sounds" + File.separator + "ZeldaTheme.wav"
+        ));
+
+    public static String getSoundPath() {
+        return mainSoundPaths.get(mainSoundIndex);
+    }
+
+    public static ArrayList<String> getSongs() {
+        return mainSoundPaths;
+    }
+
+    public static void changeSongIndex(String filePath) {
+        if(mainSoundPaths.contains(filePath)) {
+            mainSoundIndex = mainSoundPaths.indexOf(filePath);
+        }
+    }
+
+    public static void setMusicMenu(MenuItem input) {
+        Page.musicMenu = input;
+    }
+    protected MenuItem getMusicMenu() {
+        return musicMenu;
+    }
 
     /**
      * Constructor for the page.
@@ -41,9 +79,9 @@ public abstract class Page {
         transition.play();
     }
 
-    protected void playTheme(String filePath, boolean loop) {
+    protected void playTheme(String filePath) {
         if (!SoundPlayer.getMute()) {
-            SoundPlayer.playMusic(filePath, loop);
+            SoundPlayer.playMusic(filePath);
         }
     }
 

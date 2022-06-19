@@ -1,0 +1,21 @@
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane>.button-bar>.container {
+    -fx-background-color: #ede0bb;
+}
+
+.dialog-pane>.content.label {
+    -fx-background-color: #ede0bb;
+    -fx-text-fill: #000;
+    -fx-font-size: 15.0px;
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: #e6d6aa;
+}
+
+
+.dialog-pane:header .header-panel .label {
+    -fx-text-fill: #000;
+    -fx-font-size: 2em;
+    -fx-font-weight: bold;
+}

@@ -1,6 +1,12 @@
+import Tools.SoundPlayer;
+
+import javax.swing.JOptionPane;
+
+import Application.Song;
+import Application.Volume;
 import Pages.Home;
 import Pages.Page;
-import Tools.SoundPlayer;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -29,8 +35,10 @@ public class Main extends Application{
 		BorderPane root = new BorderPane();
 		Pane page = new Pane();
 		MenuBar menu = new MenuBar();
+		HBox infoBox = new HBox();
 		
-		root.setTop(drawStartMenu(menu));
+		root.setBottom(drawInfoLabel(infoBox));
+		root.setTop(drawStartMenu(menu, height, width));
 		root.setCenter(drawStartPage(page, height, width));
 
 		this.scene = new Scene(root, width/1.2, height/1.2);
@@ -43,7 +51,7 @@ public class Main extends Application{
 		this.stage.show();
  	}   
 
-	private MenuBar drawStartMenu(MenuBar menu) {
+	private MenuBar drawStartMenu(MenuBar menu, double height, double width) {
 		Menu controls = new Menu("File");
 		MenuItem fullScreen = new MenuItem("Full Screen");
 		fullScreen.setOnAction((e)->{
@@ -56,18 +64,34 @@ public class Main extends Application{
 				fullScreen.setText("Full Screen");
 			}
 		});
-		MenuItem toggleMute = new MenuItem("Mute");
-		toggleMute.setOnAction((e) -> {
-			SoundPlayer.toggleMute();
-			if(SoundPlayer.getMute()) {
-				SoundPlayer.stopMusic();
-				toggleMute.setText("Unmute");
-			} else {
-				toggleMute.setText("Mute");
+
+		MenuItem volumeMenu = new MenuItem("Volume Controls");
+		volumeMenu.setOnAction((e) -> {
+			try {
+				Volume.start(height, width);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "Error Loading Page");
 			}
 		});
 
-		controls.getItems().addAll(fullScreen, toggleMute);
+		MenuItem music = new MenuItem("Change Song");
+		music.setOnAction((e) -> {
+			try {
+				Song.start(height, width);
+			} catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "Error Loading Page");
+			}
+		});
+		SoundPlayer.setMusicHome(music);
+		Page.setMusicMenu(music);
+
+		MenuItem exit = new MenuItem("Exit");
+		exit.setOnAction((e) -> {
+			System.exit(0);
+		});
+		
+
+		controls.getItems().addAll(fullScreen, volumeMenu, music, exit);
 
 		menu.getMenus().addAll(controls);
 
@@ -79,5 +103,13 @@ public class Main extends Application{
 		currentPage.draw();
 
 		return page;
+	}
+
+	private HBox drawInfoLabel(HBox infoBox) {
+		Label currentSong = new Label("");
+		currentSong.setId("smallInfo");
+		infoBox.getChildren().add(currentSong);
+		SoundPlayer.setSongLabel(currentSong);
+		return infoBox;
 	}
 }

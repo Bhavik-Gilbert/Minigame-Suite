@@ -1,12 +1,13 @@
 package Pages;
 
-import Tools.Constants;
-import Tools.ImageReader;
-import Tools.SoundPlayer;
-
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.Flow;
 
+import Application.Song;
+import Application.Volume;
+import Tools.ImageReader;
+import Tools.SoundPlayer;
 import Pages.MiniGames.Blackjack;
 import Pages.MiniGames.Games;
 import Pages.MiniGames.Checkers_R.Checkers;
@@ -24,7 +25,8 @@ public class Selection extends Page {
     }
 
     public void draw() {
-            this.playTheme(Constants.getHomeSoundPath(), true);
+            this.playTheme(Page.getSoundPath());
+            SoundPlayer.setMusicHome(this.getMusicMenu());
             this.clear();
             transitionIn(page);
 
@@ -54,7 +56,7 @@ public class Selection extends Page {
             game.setId("gameselection");
 
             Label logo = new Label();
-            ImageView image = ImageReader.readImage("Resources" + Constants.getSeparator() + "Images" + Constants.getSeparator() + "Logos" + Constants.getSeparator() + k  + ".png", this.height/7, this.width/7);
+            ImageView image = ImageReader.readImage("Resources" + File.separator + "Images" + File.separator + "Logos" + File.separator + k  + ".png", this.height/7, this.width/7);
             if(image != null) {
                 logo.setGraphic(image);
             }
@@ -67,6 +69,8 @@ public class Selection extends Page {
             game.setOnMouseClicked((e)->{
                 transitionOut(page);
                 SoundPlayer.stopMusic();
+                Volume.stop();
+                Song.stop();
                 v.draw();
             });
 

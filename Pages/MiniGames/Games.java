@@ -1,12 +1,8 @@
 package Pages.MiniGames;
 
-import java.util.concurrent.ExecutorService;
-
-import javax.crypto.spec.RC2ParameterSpec;
 
 import Pages.Page;
 import Pages.Selection;
-import Tools.ImageReader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -17,13 +13,48 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import javax.crypto.spec.RC2ParameterSpec;
+
+import Application.Song;
+import Application.Volume;
+import Tools.ImageReader;
+import Tools.SoundPlayer;
+
 public abstract class Games extends Page {
     protected GridPane grid;
+
+    private static int gameSoundIndex = 0;
+    private static ArrayList<String> gameSoundPaths = new ArrayList<String>(
+        Arrays.asList(
+                "Resources" + File.separator + "Sounds" + File.separator + "VoloTheme.wav",
+                "Resources" + File.separator + "Sounds" + File.separator + "GiritinaTheme.wav"
+        ));
+
+    public static String getSoundPath() {
+        return gameSoundPaths.get(gameSoundIndex);
+    }
+
+    public static ArrayList<String> getSongs() {
+        return gameSoundPaths;
+    }
+    
+    public static void changeSongIndex(String filePath) {
+        if (gameSoundPaths.contains(filePath)) {
+            gameSoundIndex = gameSoundPaths.indexOf(filePath);
+        }
+    }
+
     public Games(Pane page, Double height, Double width) {
         super(page, height, width);
     }
 
     protected GridPane drawGrid() {
+        this.playTheme(Games.getSoundPath());
+        SoundPlayer.setMusicGame(this.getMusicMenu());
+        
         grid = new GridPane();
         grid.setHgap(this.width/10);
         grid.setVgap(this.height/50);
@@ -34,11 +65,7 @@ public abstract class Games extends Page {
         row.setPadding(new Insets(this.height/50, this.width/50, this.height/50, this.width/50));
 
         Button quit = new Button("Quit");
-        quit.setOnAction(e -> {
-            Page game = new Selection(this.page, this.height, this.width);
-            transitionOut(page);
-            game.draw();
-        });
+        quit.setOnAction(e -> gameFinish());
 
         Label time = new Label("0:00");
         time.setId("timer");
@@ -90,6 +117,10 @@ public abstract class Games extends Page {
     protected void gameFinish() {
         Page game = new Selection(this.page, this.height, this.width);
         transitionOut(this.page);
+        SoundPlayer.stopMusic();
+        SoundPlayer.setMusicHome(this.getMusicMenu());
+        Volume.stop();
+        Song.stop();
         game.draw();
     }
 }

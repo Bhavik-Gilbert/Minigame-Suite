@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: #e6d6aa;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+}
+
+.slider .track {
+    -fx-background-color: #4b4b4c;
+}
+.slider .thumb {
+    -fx-background-color: #000;
+}
+.slider .tick-label {
+    -fx-text-fill: #4b4b4c;
+}
+
+#header {
+    -fx-text-fill: #000;
+    -fx-padding: 1em 3em 1em 1em;
+    -fx-text-weight: bold;
+    -fx-font-size: 2em;
+    -fx-font-family: "Georgia";
+}
+
+#button, #songbutton {
+    -fx-background-color: #ede0bb;
+    -fx-text-fill: #000;
+    -fx-font-size: 3em;
+    -fx-padding: 2em 2.5em 2em 2.5em;
+    -fx-border-insets: 2em;
+    -fx-background-insets: 2em;
+    -fx-background-radius: 0.5em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+#songbutton {
+    -fx-font-size: 1.5em;
+}
+#button:hover, #songbutton:hover {
+    -fx-background-color: #009B77;
+    -fx-text-fill: #fff;
+}

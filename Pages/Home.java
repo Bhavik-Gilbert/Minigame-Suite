@@ -1,17 +1,17 @@
 package Pages;
-import Tools.Constants;
-import Tools.SoundPlayer;
+import java.util.*;
 
+import Tools.AlertBox;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class Home extends Page {
+public class Home extends Page {    
     public Home(Pane page, Double height, Double width) {
         super(page, height, width);
     }
 
     public void draw() {
-        this.playTheme(Constants.getHomeSoundPath(), true);
+        this.playTheme(Page.getSoundPath());
         this.clear();
         transitionIn(page);
 

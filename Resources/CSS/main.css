@@ -76,6 +76,12 @@
     -fx-cursor: hand;
 }
 
+#smallInfo {
+    -fx-font-size: 0.9em;
+    -fx-text-fill: #444;
+    -fx-font-style: italic;
+    -fx-padding: 0 0 0.1em 0.3em;
+}
 #gameselection {
     -fx-background-color: #000;
     -fx-border-color: #000;
@@ -105,11 +111,9 @@
 
 #informationbox {
     -fx-background-color: #009B77;
-    -fx-border-color: #fff;
-    -fx-border-width: 0.3em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
     -fx-padding: 1em;
-    -fx-border-radius: 2em;
-    -fx-background-radius: 2.5em;
+    -fx-background-radius: 0.5em;
 }
 #informationbox #timer {
     -fx-text-fill: #ede0bb;
@@ -130,6 +134,7 @@
 #selectorPiece {
     -fx-background-color: #e6d6aa;
     -fx-background-radius: 10em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
 }
 #killPiece {
     -fx-background-color: #000;
