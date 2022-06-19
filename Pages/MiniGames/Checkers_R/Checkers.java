@@ -142,6 +142,7 @@ public class Checkers extends Games {
         boardPieces.setHgap(this.width/600);
         boardPieces.setVgap(this.width/650);
 
+        
         this.pieces.forEach((row) -> {
             row.forEach((piece) -> {
                 if (piece == null) return;
@@ -149,7 +150,7 @@ public class Checkers extends Games {
                 Integer listIndex = this.pieces.indexOf(row);
                 Integer rowIndex = row.indexOf(piece);
 
-                Label pieceImage = this.pieces.get(listIndex).get(rowIndex).getPieceImage(this.width / 5, this.width / 5);
+                Label pieceImage = this.pieces.get(listIndex).get(rowIndex).getPieceImage(this.width/5, this.width/5);
                 pieceImage.setId("piece");
                 pieceImage.setOnMouseClicked((e) -> {
                     pieceActions(listIndex, rowIndex);
@@ -171,23 +172,23 @@ public class Checkers extends Games {
         
         for(int i=0; i<this.pieces.size(); i++) {
             for(int j=0; j<this.pieces.get(i).size(); j++) {
-                if(pieces.get(i).get(j)==null) {
-                    int listIndex = i;
-                    int rowIndex = j;
+                if(pieces.get(i).get(j)!=null) continue;
 
-                    Label pieceImage = Piece.getBlankPiece(this.width / 5, this.width / 5);
-                    pieceImage.setId("zone");
-                    pieceImage.setOnMouseClicked((e) -> {
-                        spaceActions(listIndex, rowIndex);
-                    });
-                    this.selectedZones.forEach((coord) -> {
-                        if(coord[0]==listIndex && coord[1]== rowIndex) {
-                            pieceImage.setId("selectorZone");
-                        }
-                    });
+                int listIndex = i;
+                int rowIndex = j;
 
-                    boardPieces.add(pieceImage, j, i);
-                }
+                Label pieceImage = Piece.getBlankPiece(this.width / 5, this.width / 5);
+                pieceImage.setId("zone");
+                pieceImage.setOnMouseClicked((e) -> {
+                    spaceActions(listIndex, rowIndex);
+                });
+                this.selectedZones.forEach((coord) -> {
+                    if(coord[0]==listIndex && coord[1]== rowIndex) {
+                        pieceImage.setId("selectorZone");
+                    }
+                });
+
+                boardPieces.add(pieceImage, j, i);
             }
         }
 

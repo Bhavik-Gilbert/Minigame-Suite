@@ -8,12 +8,12 @@ import javafx.scene.image.ImageView;
 
 public class Player {
     private int playerNumber;
-    private int playerX, playerY;
+    private int playerX, playerY, prevX, prevY;
 
     public Player(int playerNumber) {
         this.playerNumber = playerNumber;
-        this.playerX = -1;//-1
-        this.playerY = 9;//9
+        this.playerX = -1;
+        this.playerY = 9;
     }
 
     public int getPlayerNumber() {
@@ -28,12 +28,28 @@ public class Player {
         return playerY;
     }
 
-    public boolean roll() {
-        int roll = (int) (Math.random() * 6);
+    public int getPreviousX() {
+        return prevX;
+    }
+
+    public int getPreviousY() {
+        return prevY;
+    }
+
+    public void changeLocation(int x, int y) {
+        this.playerX = x;
+        this.playerY = y;
+    }
+
+    public Integer roll() {
+        this.prevX = this.playerX;
+        this.prevY = this.playerY;
+
+        int roll = (int) Math.floor((Math.random() * 6)) + 1;
         this.playerX += roll;
 
         if(this.playerY == 0 && this.playerX == 9) {
-            return true;
+            return 100;
         }
         else if(this.playerY == 0 && this.playerX >= 10) {
             this.playerX = 9 - (this.playerX - 9); 
@@ -44,7 +60,7 @@ public class Player {
             this.playerY--;
         }
 
-        return false;
+        return roll;
     }
 
     public static Label getImage(String path, double height, double width) {

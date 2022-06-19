@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
@@ -54,6 +55,7 @@ public class Main extends Application{
 	private MenuBar drawStartMenu(MenuBar menu, double height, double width) {
 		Menu window = new Menu("Window");
 		MenuItem fullScreen = new MenuItem("Full Screen");
+		fullScreen.setAccelerator(new KeyCodeCombination(KeyCode.ESCAPE));
 		fullScreen.setOnAction((e)->{
 			this.stage.setFullScreen(!this.fullScreen);
 			this.fullScreen = !this.fullScreen;
@@ -65,6 +67,7 @@ public class Main extends Application{
 			}
 		});
 		MenuItem exit = new MenuItem("Exit");
+		exit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN));
 		exit.setOnAction((e) -> {
 			System.exit(0);
 		});
@@ -72,6 +75,7 @@ public class Main extends Application{
 
 		Menu sound = new Menu("Sound");
 		MenuItem volumeMenu = new MenuItem("Volume Controls");
+		volumeMenu.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
 		volumeMenu.setOnAction((e) -> {
 			try {
 				Volume.start(height, width);
@@ -80,6 +84,7 @@ public class Main extends Application{
 			}
 		});
 		MenuItem music = new MenuItem("Change Song");
+		music.setAccelerator(new KeyCodeCombination(KeyCode.P, KeyCombination.SHORTCUT_DOWN));
 		music.setOnAction((e) -> {
 			try {
 				Song.start(height, width);

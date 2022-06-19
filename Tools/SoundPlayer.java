@@ -18,6 +18,7 @@ public class SoundPlayer {
     private static AudioInputStream music;
     private static boolean mute = false;
     private static boolean playing = false;
+    private static String currentSong;
     private static Page.PAGETYPE pageType;
     private static Label songName;
 
@@ -28,8 +29,10 @@ public class SoundPlayer {
             music = AudioSystem.getAudioInputStream(new File(filePath));
             clip = AudioSystem.getClip();
             clip.open(music);
-            playing = true;
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+            playing = true;
+            currentSong = filePath;
 
             setClipVolume(clip, Volume.getVolume());
             setSongLabel(filePath);
@@ -61,6 +64,7 @@ public class SoundPlayer {
 
         clip.stop();
         playing = false;
+        currentSong = null;
     }
 
     private static void setClipVolume(Clip sound, float volume) {
@@ -95,6 +99,10 @@ public class SoundPlayer {
             }
             
         }
+    }
+
+    public static String getCurrentSong() {
+        return currentSong;
     }
 
     public static void setMusicHome(MenuItem musicMenu) {

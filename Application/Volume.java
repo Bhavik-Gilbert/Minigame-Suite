@@ -48,12 +48,9 @@ public class Volume {
         volumeSlider.setBlockIncrement(0.05f);
         volumeSlider.setMajorTickUnit(0.1f);
         volumeSlider.setSnapToTicks(true);
-        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                SoundPlayer.changeVolume(newValue.floatValue());
-                Volume.volume = newValue.floatValue();
-            }
+        volumeSlider.setOnMouseReleased((e) -> {
+            Volume.volume = (float)volumeSlider.getValue();
+            SoundPlayer.changeVolume(Volume.volume);
         });
 
         root.addRow(0, volumeLabel, volumeSlider);
@@ -68,11 +65,8 @@ public class Volume {
         SFXSlider.setBlockIncrement(0.1f);
         SFXSlider.setMajorTickUnit(0.2f);
         SFXSlider.setSnapToTicks(true);
-        SFXSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Volume.sfx = newValue.floatValue();
-            }
+        SFXSlider.setOnMouseReleased((e) -> {
+            Volume.sfx = (float) SFXSlider.getValue();
         });
 
         root.addRow(1, SFXLabel, SFXSlider);

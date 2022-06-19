@@ -52,6 +52,7 @@ public class Song {
             Label songLabel = new Label(song);
             songLabel.setId("songbutton");
             songLabel.setOnMouseClicked((e) -> {
+                if(SoundPlayer.getCurrentSong() != null && filePath == SoundPlayer.getCurrentSong()) return;
                 SoundPlayer.stopMusic();
                 SoundPlayer.playMusic(filePath);
                 switch (SoundPlayer.getPageType()) {
