@@ -131,16 +131,12 @@ public class Checkers extends Games {
     }
 
     private GridPane displayBoard(ArrayList<ArrayList<Piece>> pieces) {
-        if(this.pieces==null) {
-            return null;
-        }
+        if(this.pieces==null) return null;
+        
 
-        if(boardPieces==null) {
-            boardPieces = new GridPane();
-        }
-        else {
-            boardPieces.getChildren().clear();
-        }
+        if(boardPieces==null) boardPieces = new GridPane();
+        else boardPieces.getChildren().clear();
+        
 
         boardPieces.setId("checkersBoard");
         boardPieces.setHgap(this.width/600);

@@ -46,6 +46,7 @@
 
 .menu-item:hover {
     -fx-background-color: #ede0bb;
+    -fx-cursor: hand;
 }
 
 /* button */
@@ -55,11 +56,13 @@
     -fx-padding: 1em 3em;
     -fx-font-size: 2em;
     -fx-background-radius: 2em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
 }
 .button:hover {
     -fx-background-color: #fff;
     -fx-text-fill: #009B77;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(256, 256, 256, 0.3), 10, 0.5, 0.0, 0.0);
 }
 
 #mainbutton {
@@ -69,10 +72,12 @@
     -fx-font-size: 3em;
     -fx-background-radius: 5em;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
 }
 #mainbutton:hover {
     -fx-background-color: #fff;
     -fx-text-fill: #009B77;
+    -fx-effect: dropshadow(gaussian, rgba(256, 256, 256, 0.3), 10, 0.5, 0.0, 0.0);
     -fx-cursor: hand;
 }
 
@@ -110,17 +115,17 @@
 }
 
 #informationbox {
-    -fx-background-color: #009B77;
+    -fx-background-color: #ede0bb;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
     -fx-padding: 1em;
     -fx-background-radius: 0.5em;
 }
 #informationbox #timer {
-    -fx-text-fill: #ede0bb;
+    -fx-text-fill: #009B77;
 }
 #information {
     -fx-font-size: 1.5em;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #000;
     -fx-font-style: italic;
 }
 
@@ -135,6 +140,7 @@
     -fx-background-color: #e6d6aa;
     -fx-background-radius: 10em;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+    -fx-cursor: hand;
 }
 #killPiece {
     -fx-background-color: #000;
@@ -143,4 +149,21 @@
 #selectorZone {
     -fx-background-color: #fff;
     -fx-opacity: 0.2;
+    -fx-cursor: hand;
+}
+
+#button {
+    -fx-background-color: #ede0bb;
+    -fx-text-fill: #000;
+    -fx-font-size: 3em;
+    -fx-padding: 2em 3em 2em 3em;
+    -fx-border-insets: 2em;
+    -fx-background-insets: 2em;
+    -fx-background-radius: 0.5em;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+#button:hover {
+    -fx-background-color: #009B77;
+    -fx-text-fill: #fff;
 }

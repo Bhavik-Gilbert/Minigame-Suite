@@ -4,6 +4,7 @@ package Pages.MiniGames;
 import Pages.Page;
 import Pages.Selection;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -25,6 +26,7 @@ import Tools.SoundPlayer;
 
 public abstract class Games extends Page {
     protected GridPane grid;
+    protected Integer playerCount;
 
     private static int gameSoundIndex = 0;
     private static ArrayList<String> gameSoundPaths = new ArrayList<String>(
@@ -75,6 +77,31 @@ public abstract class Games extends Page {
         grid.addRow(0, row);
 
         return grid;
+    }
+
+    protected VBox playerNumber(int players) {
+        VBox vbox = new VBox();
+        vbox.setAlignment(Pos.CENTER);
+
+        Label question = new Label("How many players?");
+        question.setId("information");
+
+        FlowPane flow = new FlowPane();
+        flow.setAlignment(Pos.CENTER);
+        for(int i=2; i<=players; i++) {
+            Label label = new Label(Integer.toString(i));
+            label.setId("button");
+            label.setOnMouseClicked((e)-> {
+                this.playerCount = Integer.parseInt(label.getText());
+                this.draw();
+            });
+
+            flow.getChildren().add(label);
+        }
+        
+        vbox.getChildren().addAll(question, flow);
+
+        return vbox;
     }
 
     private void timer(Label label) {
