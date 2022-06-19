@@ -52,7 +52,7 @@ public class Main extends Application{
  	}   
 
 	private MenuBar drawStartMenu(MenuBar menu, double height, double width) {
-		Menu controls = new Menu("File");
+		Menu window = new Menu("Window");
 		MenuItem fullScreen = new MenuItem("Full Screen");
 		fullScreen.setOnAction((e)->{
 			this.stage.setFullScreen(!this.fullScreen);
@@ -64,7 +64,13 @@ public class Main extends Application{
 				fullScreen.setText("Full Screen");
 			}
 		});
+		MenuItem exit = new MenuItem("Exit");
+		exit.setOnAction((e) -> {
+			System.exit(0);
+		});
+		window.getItems().addAll(fullScreen, exit);
 
+		Menu sound = new Menu("Sound");
 		MenuItem volumeMenu = new MenuItem("Volume Controls");
 		volumeMenu.setOnAction((e) -> {
 			try {
@@ -73,7 +79,6 @@ public class Main extends Application{
 				JOptionPane.showMessageDialog(null, "Error Loading Page");
 			}
 		});
-
 		MenuItem music = new MenuItem("Change Song");
 		music.setOnAction((e) -> {
 			try {
@@ -84,16 +89,11 @@ public class Main extends Application{
 		});
 		SoundPlayer.setMusicHome(music);
 		Page.setMusicMenu(music);
+		sound.getItems().addAll(volumeMenu, music);
 
-		MenuItem exit = new MenuItem("Exit");
-		exit.setOnAction((e) -> {
-			System.exit(0);
-		});
-		
+	
 
-		controls.getItems().addAll(fullScreen, volumeMenu, music, exit);
-
-		menu.getMenus().addAll(controls);
+		menu.getMenus().addAll(window, sound);
 
 		return menu;
 	}

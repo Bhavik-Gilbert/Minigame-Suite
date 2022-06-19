@@ -22,6 +22,7 @@ public class Checkers extends Games {
     private COLOUR turn;
     private HashMap<COLOUR, Label> score;
     private int pieceCount;
+    private boolean stuck;
 
     private GridPane boardPieces;
     private StackPane board;
@@ -69,6 +70,7 @@ public class Checkers extends Games {
     private ArrayList<ArrayList<Piece>> buildBoard() {
         ArrayList<ArrayList<Piece>> pieces = new ArrayList<ArrayList<Piece>>();
         this.pieceCount = 0;
+        this.stuck = false;
 
         for (int i = 0; i < 8; i++) {
             ArrayList<Piece> row = new ArrayList<Piece>();
@@ -284,6 +286,7 @@ public class Checkers extends Games {
         if(killPlayer(spaceListIndex, spaceRowIndex, pieceListIndex, pieceRowIndex)) return;
         clearSelections(this.selectedZones, this.killZones);
         changeTurn();
+        possibleMoves();
     }
 
     private void movePiece(int pieceListIndex, int pieceRowIndex, int spaceListIndex, int spaceRowIndex) {
@@ -352,7 +355,6 @@ public class Checkers extends Games {
         if (scoreNumber >= (this.pieceCount / 2) && opponentScoreLabel != null) {
             String[] opponentScoreText = opponentScoreLabel.getText().split(" ");
             int opponentScoreNumber = Integer.parseInt(opponentScoreText[opponentScoreText.length - 1]);
-            displayBoard(this.pieces);
             gameOver(turn.name(), new int[] { scoreNumber, opponentScoreNumber });
         }
     }
@@ -370,6 +372,32 @@ public class Checkers extends Games {
         int turnNumber = Integer.parseInt(turnText[turnText.length - 1]);
         turnNumber += 1;
         turnCount.setText("Turn : " + turnNumber);
+    }
+
+    private void possibleMoves() {
+
+        this.pieces.forEach((row) -> {
+            row.forEach((piece) -> {
+                if (piece == null || piece.getColour() != this.turn)
+                    return;
+
+                this.selectZoneOptions(piece, this.pieces.indexOf(row), row.indexOf(piece), false);
+            });
+        });
+
+        if (this.selectedZones.isEmpty()){
+            if(!this.stuck) {
+                changeTurn();
+                this.stuck = true;
+                possibleMoves();
+            } else {
+                gameDraw();
+            }
+            return;
+        }
+
+        this.stuck = false;
+        clearSelections(this.selectedZones, this.killZones);
     }
 
     private void clearSelections(HashSet<int[]> selected, HashSet<int[]> kill) {
@@ -394,10 +422,21 @@ public class Checkers extends Games {
         String header = "Game Over";
         String message = winner + " wins with a score of " + score[0] + " to " + score[1];
 
-        SoundPlayer.playSound("Resources" +  File.separator + "Sounds" + File.separator + "game_end.wav");
+        gameEnd(title, header, message);
+    }
 
+    private void gameDraw() {
+        String title = "Game Over";
+        String header = "Game Over";
+        String message = "Both players can't move. Game is a draw.";
+
+        gameEnd(title, header, message);
+    }
+
+    private void gameEnd(String title, String header, String message) {
+        displayBoard(this.pieces);
+        SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "game_end.wav");
         AlertBox.informationBox(title, header, message);
-
         gameFinish();
-    } 
+    }
 }

@@ -8,9 +8,12 @@ import Application.Song;
 import Application.Volume;
 import Tools.ImageReader;
 import Tools.SoundPlayer;
-import Pages.MiniGames.Blackjack;
 import Pages.MiniGames.Games;
+import Pages.MiniGames.Blackjack_R.Blackjack;
 import Pages.MiniGames.Checkers_R.Checkers;
+import Pages.MiniGames.Chess_R.Chess;
+import Pages.MiniGames.Connect4_R.Connect4;
+import Pages.MiniGames.SnakesnLadders_R.SnakesnLadders;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -42,7 +45,10 @@ public class Selection extends Page {
         this.games = new HashMap<String, Games>();
 
         this.games.put("Checkers", new Checkers(this.page, this.height, this.width));
+        this.games.put("Chess", new Chess(this.page, this.height, this.width));
         this.games.put("Blackjack", new Blackjack(this.page, this.height, this.width));
+        this.games.put("Snakes'n'Ladders", new SnakesnLadders(this.page, this.height, this.width));
+        this.games.put("Connect4", new Connect4(this.page, this.height, this.width));
     }
 
     private void showGames(FlowPane flow) {

@@ -1,5 +1,6 @@
-package Pages.MiniGames;
+package Pages.MiniGames.Blackjack_R;
 
+import Pages.MiniGames.Games;
 import javafx.scene.layout.Pane;
 
 public class Blackjack extends Games {
