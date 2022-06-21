@@ -14,6 +14,7 @@ import javafx.scene.layout.*;
 public abstract class Page {
     // The BorderPane for the page to be drawn onto.
     protected Pane page;
+    protected BorderPane root;
 
     protected double height;
     protected double width;
@@ -54,10 +55,11 @@ public abstract class Page {
     /**
      * Constructor for the page.
      */
-    public Page(Pane page, double height, double width) {
+    public Page(Pane page, BorderPane root, double height, double width) {
         this.page = page;
         this.height = height;
         this.width = width;
+        this.root = root;
     }
 
     /**

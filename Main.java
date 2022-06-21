@@ -19,6 +19,7 @@ import javafx.stage.Screen;
 public class Main extends Application{
 	private Scene scene;
 	private Stage stage;
+	private BorderPane root;
 
 	private boolean fullScreen;
 	public static void main(String[] args) {
@@ -33,14 +34,14 @@ public class Main extends Application{
 		this.fullScreen = false;
 
 		this.stage = stage;
-		BorderPane root = new BorderPane();
+		this.root = new BorderPane();
 		Pane page = new Pane();
 		MenuBar menu = new MenuBar();
 		HBox infoBox = new HBox();
 		
-		root.setBottom(drawInfoLabel(infoBox));
-		root.setTop(drawStartMenu(menu, height, width));
-		root.setCenter(drawStartPage(page, height, width));
+		this.root.setBottom(drawInfoLabel(infoBox));
+		this.root.setTop(drawStartMenu(menu, height, width));
+		this.root.setCenter(drawStartPage(page, root, height, width));
 
 		this.scene = new Scene(root, width/1.2, height/1.2);
 		this.scene.getStylesheets().add("resources/CSS/main.css");
@@ -103,8 +104,8 @@ public class Main extends Application{
 		return menu;
 	}
 
-	private Pane drawStartPage(Pane page, double height, double width) {
-		Page currentPage = new Home(page, height, width);
+	private Pane drawStartPage(Pane page, BorderPane root, double height, double width) {
+		Page currentPage = new Home(page, root, height, width);
 		currentPage.draw();
 
 		return page;

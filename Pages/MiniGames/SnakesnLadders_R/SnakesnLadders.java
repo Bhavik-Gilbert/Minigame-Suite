@@ -26,8 +26,8 @@ public class SnakesnLadders extends Games {
     private double playerHeight = width/4;
     private double playerWidth = width/4;
 
-    public SnakesnLadders(Pane page, Double height, Double width) {
-        super(page, height, width);
+    public SnakesnLadders(Pane page, BorderPane root, Double height, Double width) {
+        super(page, root, height, width);
     }
 
     public void draw() {
@@ -158,7 +158,7 @@ public class SnakesnLadders extends Games {
         SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "dice_roll.wav");
         rollBoardChanges();
         displayBoard(this.pieces);
-        buttonNext(this.roll, this.actionLabel, score);
+        //buttonNext(this.roll, this.actionLabel, score);
     }
 
     private void playerNext() {
@@ -179,12 +179,19 @@ public class SnakesnLadders extends Games {
         roll.setText("Roll");
         roll.setOnAction(e -> playerRoll());
 
+        actionLabel.setGraphic(null);
         actionLabel.setText("Roll the dice");
     }
 
     private void buttonNext(Button roll, Label actionLabel, int score) {
         roll.setText("Next");
-        actionLabel.setText(Integer.toString(score));
+
+        ImageView image = null;
+        while (image == null) {
+            image = ImageReader.readImage("Resources" + File.separator + "Games" + File.separator + "SnakesnLadders" + File.separator + "dice" + score + ".png", this.width/40, this.width/40);
+        }
+        actionLabel.setGraphic(image);
+        actionLabel.setText(null);
 
         //game over
         if (score == 100) {

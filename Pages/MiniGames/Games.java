@@ -49,11 +49,12 @@ public abstract class Games extends Page {
         }
     }
 
-    public Games(Pane page, Double height, Double width) {
-        super(page, height, width);
+    public Games(Pane page, BorderPane root, Double height, Double width) {
+        super(page, root, height, width);
     }
 
     protected GridPane drawGrid() {
+        this.root.setId("gameBackground");
         this.playTheme(Games.getSoundPath());
         SoundPlayer.setMusicGame(this.getMusicMenu());
         
@@ -142,7 +143,8 @@ public abstract class Games extends Page {
     }
 
     protected void gameFinish() {
-        Page game = new Selection(this.page, this.height, this.width);
+        Page game = new Selection(this.page, this.root, this.height, this.width);
+        this.root.setId(null);
         transitionOut(this.page);
         SoundPlayer.stopMusic();
         SoundPlayer.setMusicHome(this.getMusicMenu());

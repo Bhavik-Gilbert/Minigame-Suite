@@ -6,8 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
 public class Home extends Page {    
-    public Home(Pane page, Double height, Double width) {
-        super(page, height, width);
+    public Home(Pane page, BorderPane root, Double height, Double width) {
+        super(page, root, height, width);
     }
 
     public void draw() {
@@ -20,7 +20,7 @@ public class Home extends Page {
         Label start = new Label("Play"); 
         start.setId("mainbutton");
         start.setOnMouseClicked((e)->{
-            Page game = new Selection(this.page, this.height, this.width);
+            Page game = new Selection(this.page, this.root, this.height, this.width);
             transitionOut(page);
             game.draw();
         });

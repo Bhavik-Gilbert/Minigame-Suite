@@ -1,9 +1,13 @@
 .root {
-    -fx-background-color: #000;
+    -fx-background-color: #e6d6aa;
     -fx-background-image: url("../Images/Backgrounds/Home.gif");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 100%;
     -fx-background-position: center center;
+}
+#gameBackground {
+    -fx-background-size: 120%;
+   -fx-background-image: url("../Images/Backgrounds/GameBackground.png");
 }
 
 /* menu */
@@ -110,7 +114,7 @@
 
 #timer {
     -fx-font-size: 3em;
-    -fx-text-fill: #000;
+    -fx-text-fill: #fff;
     -fx-font-weight: bold;
 }
 

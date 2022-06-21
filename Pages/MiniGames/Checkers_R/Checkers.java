@@ -28,8 +28,8 @@ public class Checkers extends Games {
     private StackPane board;
     private Label currentTurn, turnCount;
 
-    public Checkers(Pane page, Double height, Double width) {
-        super(page, height, width);
+    public Checkers(Pane page, BorderPane root, Double height, Double width) {
+        super(page, root, height, width);
     }
 
     public void draw() {

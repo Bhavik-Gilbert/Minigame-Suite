@@ -23,8 +23,8 @@ import javafx.scene.layout.*;
 public class Selection extends Page {
     HashMap<String, Games> games;
 
-    public Selection(Pane page, Double height, Double width) {
-        super(page, height, width);
+    public Selection(Pane page, BorderPane root, Double height, Double width) {
+        super(page, root, height, width);
     }
 
     public void draw() {
@@ -44,11 +44,11 @@ public class Selection extends Page {
     private void generateGames() {
         this.games = new HashMap<String, Games>();
 
-        this.games.put("Checkers", new Checkers(this.page, this.height, this.width));
-        this.games.put("Chess", new Chess(this.page, this.height, this.width));
-        this.games.put("Blackjack", new Blackjack(this.page, this.height, this.width));
-        this.games.put("Snakes'n'Ladders", new SnakesnLadders(this.page, this.height, this.width));
-        this.games.put("Connect4", new Connect4(this.page, this.height, this.width));
+        this.games.put("Checkers", new Checkers(this.page, this.root, this.height, this.width));
+        this.games.put("Chess", new Chess(this.page, this.root, this.height, this.width));
+        this.games.put("Blackjack", new Blackjack(this.page, this.root, this.height, this.width));
+        this.games.put("Snakes'n'Ladders", new SnakesnLadders(this.page, this.root, this.height, this.width));
+        this.games.put("Connect4", new Connect4(this.page, this.root, this.height, this.width));
     }
 
     private void showGames(FlowPane flow) {
