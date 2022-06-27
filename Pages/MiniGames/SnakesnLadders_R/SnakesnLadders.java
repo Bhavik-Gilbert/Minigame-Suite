@@ -158,7 +158,7 @@ public class SnakesnLadders extends Games {
         SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "dice_roll.wav");
         rollBoardChanges();
         displayBoard(this.pieces);
-        //buttonNext(this.roll, this.actionLabel, score);
+        buttonNext(this.roll, this.actionLabel, score);
     }
 
     private void playerNext() {

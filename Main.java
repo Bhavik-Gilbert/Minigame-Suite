@@ -31,7 +31,7 @@ public class Main extends Application{
 		Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 		double height = screenBounds.getHeight();
 		double width = screenBounds.getWidth();
-		this.fullScreen = false;
+		this.fullScreen = true;
 
 		this.stage = stage;
 		this.root = new BorderPane();
@@ -50,12 +50,13 @@ public class Main extends Application{
 		this.stage.setMinHeight(height/4);
 		this.stage.setMinWidth(width/4);
 		this.stage.setScene(this.scene);
+		this.stage.setFullScreen(true);
 		this.stage.show();
  	}   
 
 	private MenuBar drawStartMenu(MenuBar menu, double height, double width) {
 		Menu window = new Menu("Window");
-		MenuItem fullScreen = new MenuItem("Full Screen");
+		MenuItem fullScreen = new MenuItem("Exit Full Screen");
 		fullScreen.setAccelerator(new KeyCodeCombination(KeyCode.ESCAPE));
 		fullScreen.setOnAction((e)->{
 			this.stage.setFullScreen(!this.fullScreen);

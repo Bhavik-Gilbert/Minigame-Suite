@@ -27,6 +27,7 @@ public class Checkers extends Games {
     private GridPane boardPieces;
     private StackPane board;
     private Label currentTurn, turnCount;
+    private double boardWidth = 576;
 
     public Checkers(Pane page, BorderPane root, Double height, Double width) {
         super(page, root, height, width);
@@ -56,7 +57,7 @@ public class Checkers extends Games {
         ImageView image = null;
         Label boardImage = new Label();
         while(image==null) {
-            image = ImageReader.readImage("Resources" + File.separator + "Games" + File.separator + "Checkers" + File.separator  + "board.png", this.width/2.5, this.width/2.5);
+            image = ImageReader.readImage("Resources" + File.separator + "Games" + File.separator + "Checkers" + File.separator  + "board.png", this.boardWidth, this.boardWidth);
         }
         boardImage.setGraphic(image);
 
@@ -139,8 +140,8 @@ public class Checkers extends Games {
         
 
         boardPieces.setId("checkersBoard");
-        boardPieces.setHgap(this.width/600);
-        boardPieces.setVgap(this.width/650);
+        boardPieces.setHgap(this.boardWidth/240);
+        boardPieces.setVgap(this.boardWidth/260);
 
         
         this.pieces.forEach((row) -> {
@@ -150,7 +151,7 @@ public class Checkers extends Games {
                 Integer listIndex = this.pieces.indexOf(row);
                 Integer rowIndex = row.indexOf(piece);
 
-                Label pieceImage = this.pieces.get(listIndex).get(rowIndex).getPieceImage(this.width/5, this.width/5);
+                Label pieceImage = this.pieces.get(listIndex).get(rowIndex).getPieceImage(this.boardWidth/2, this.boardWidth/2);
                 pieceImage.setId("piece");
                 pieceImage.setOnMouseClicked((e) -> {
                     pieceActions(listIndex, rowIndex);
@@ -177,7 +178,7 @@ public class Checkers extends Games {
                 int listIndex = i;
                 int rowIndex = j;
 
-                Label pieceImage = Piece.getBlankPiece(this.width / 5, this.width / 5);
+                Label pieceImage = Piece.getBlankPiece(this.boardWidth/2, this.boardWidth/2);
                 pieceImage.setId("zone");
                 pieceImage.setOnMouseClicked((e) -> {
                     spaceActions(listIndex, rowIndex);
