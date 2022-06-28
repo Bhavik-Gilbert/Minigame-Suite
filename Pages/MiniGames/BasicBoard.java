@@ -24,11 +24,12 @@ abstract public class BasicBoard extends Games{
     protected HashMap<COLOUR, Label> score;
     protected int pieceCount;
     protected boolean stuck;
+    protected double boardWidth = 576;
 
+    protected VBox informationBox;
     protected GridPane boardPieces;
     protected StackPane board;
     protected Label currentTurn, turnCount;
-    protected double boardWidth = 576;
 
     public BasicBoard(Pane page, BorderPane root, Double height, Double width) {
         super(page, root, height, width);
@@ -40,8 +41,9 @@ abstract public class BasicBoard extends Games{
 
         this.grid = drawGrid();
         this.board = generateBoard();
+        this.informationBox = displayInformation();
 
-        this.grid.addRow(1, this.board, displayInformation());
+        this.grid.addRow(1, this.board, this.informationBox);
 
         page.getChildren().addAll(this.grid);
     }
@@ -89,7 +91,7 @@ abstract public class BasicBoard extends Games{
         blackScore.setId("information");
 
         information.getChildren().addAll(currentTurn, turnCount, whiteScore, blackScore);
-        filler.getChildren().addAll(information);
+        filler.getChildren().add(information);
 
         score = new HashMap<COLOUR, Label>();
         score.put(COLOUR.WHITE, whiteScore);
@@ -326,7 +328,7 @@ abstract public class BasicBoard extends Games{
 
     protected void gameOver(String winner, int score[]) {
         String title = "Game Over";
-        String header = "Game Over";
+        String header = getFinalTime();
         String message = winner + " wins with a score of " + score[0] + " to " + score[1];
 
         gameEnd(title, header, message);
@@ -334,7 +336,7 @@ abstract public class BasicBoard extends Games{
 
     protected void gameDraw() {
         String title = "Game Over";
-        String header = "Game Over";
+        String header = getFinalTime();
         String message = "Both players can't move. Game is a draw.";
 
         gameEnd(title, header, message);

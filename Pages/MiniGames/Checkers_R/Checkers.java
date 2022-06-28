@@ -122,16 +122,11 @@ public class Checkers extends BasicBoard {
     }
 
     protected void promotePiece(int spaceListIndex) {
-        if (this.selectedPiece.getColour() == COLOUR.WHITE) {
-            if (spaceListIndex == 0) {
-                this.selectedPiece.promote(TYPE.KING);
-                SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "powerup.wav");
-            }
-        } else {
-            if (spaceListIndex == this.pieces.size() - 1) {
-                this.selectedPiece.promote(TYPE.KING);
-                SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "powerup.wav");
-            }
+        Boolean whitePromotion = (this.selectedPiece.getColour() == COLOUR.WHITE) && (spaceListIndex == 0);
+        Boolean blackPromotion = (this.selectedPiece.getColour() == COLOUR.BLACK) && (spaceListIndex == this.pieces.size() - 1);
+        if (whitePromotion || blackPromotion) {
+            this.selectedPiece.promote(TYPE.KING);
+            SoundPlayer.playSound("Resources" + File.separator + "Sounds" + File.separator + "powerup.wav");
         }
     }
 }

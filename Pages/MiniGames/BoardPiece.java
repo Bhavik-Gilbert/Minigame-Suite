@@ -15,7 +15,7 @@ abstract public class BoardPiece {
     }
 
     public static enum TYPE {
-        KING, PAWN, DEAD
+        KING, QUEEN, ROOK, BISHOP, KNIGHT, PAWN, DEAD
     }
 
     protected COLOUR colour;

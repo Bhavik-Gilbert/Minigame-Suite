@@ -204,7 +204,7 @@ public class SnakesnLadders extends Games {
 
     private void gameOver() {
         String title = "Game Over";
-        String header = "Game Over";
+        String header = getFinalTime();
         String message = "Player " + this.turn + " wins!";
 
         displayBoard(this.pieces);

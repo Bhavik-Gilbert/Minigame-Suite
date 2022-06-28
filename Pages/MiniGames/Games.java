@@ -6,7 +6,6 @@ import Pages.Selection;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
@@ -16,17 +15,17 @@ import javafx.event.EventHandler;
 
 import java.io.File;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import javax.crypto.spec.RC2ParameterSpec;
 
 import Application.Song;
 import Application.Volume;
-import Tools.ImageReader;
 import Tools.SoundPlayer;
 
 public abstract class Games extends Page {
     protected GridPane grid;
+    private Label timeLabel;
+
     protected Integer playerCount;
+    private Timeline timer;
 
     private static int gameSoundIndex = 0;
     private static ArrayList<String> gameSoundPaths = new ArrayList<String>(
@@ -70,11 +69,11 @@ public abstract class Games extends Page {
         Button quit = new Button("Quit");
         quit.setOnAction(e -> gameFinish());
 
-        Label time = new Label("0:00");
-        time.setId("timer");
-        timer(time);
+        timeLabel = new Label("0:00");
+        timeLabel.setId("timer");
+        timer(timeLabel);
 
-        row.getChildren().addAll(time, quit);
+        row.getChildren().addAll(timeLabel, quit);
         grid.addRow(0, row);
 
         return grid;
@@ -106,10 +105,10 @@ public abstract class Games extends Page {
     }
 
     private void timer(Label label) {
-        Timeline time = new Timeline();
-        time.setCycleCount(Timeline.INDEFINITE);
-            if(time!=null) {
-                time.stop();
+        this.timer = new Timeline();
+        timer.setCycleCount(Timeline.INDEFINITE);
+            if(timer!=null) {
+                timer.stop();
             }
         KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
@@ -138,8 +137,8 @@ public abstract class Games extends Page {
               }
         });
 
-        time.getKeyFrames().add(frame);
-        time.playFromStart();
+        timer.getKeyFrames().add(frame);
+        timer.playFromStart();
     }
 
     protected void gameFinish() {
@@ -150,6 +149,16 @@ public abstract class Games extends Page {
         SoundPlayer.setMusicHome(this.getMusicMenu());
         Volume.stop();
         Song.stop();
+        timer.stop();
         game.draw();
+    }
+
+    protected void stopTimer() {
+        timer.stop();   
+    }
+
+    protected String getFinalTime() {
+        timer.stop();
+        return timeLabel.getText();
     }
 }
