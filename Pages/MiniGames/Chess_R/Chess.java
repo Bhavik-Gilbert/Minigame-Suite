@@ -5,6 +5,7 @@ import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.*;
 
 import Pages.MiniGames.BasicBoard;
+import Pages.MiniGames.BoardPiece;
 import Pages.MiniGames.BoardPiece.COLOUR;
 import Pages.MiniGames.BoardPiece.TYPE;
 import Tools.SoundPlayer;
@@ -62,5 +63,35 @@ public class Chess extends BasicBoard {
         }
 
         promoteScreen.getChildren().addAll(promoteLabel, promoteChoices);
+    }
+
+    @Override
+    protected ArrayList<ArrayList<BoardPiece>> buildBoard() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected BoardPiece createPiece(COLOUR colour, TYPE type, int column, int row) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    protected boolean selectZoneOptions(BoardPiece piece, int listIndex, int pieceIndex, boolean killed) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    protected boolean selectZones(BoardPiece piece, int lIndex, int l2Index, int pIndex, int p2Index) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    protected boolean killPlayer(int spaceListIndex, int spaceRowIndex, int pieceListIndex, int pieceRowIndex) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }
